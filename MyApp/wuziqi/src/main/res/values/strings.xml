@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">五子棋</string>
+    <string name="action_settings">restart</string>
+    <string name="start">双人对战</string>
+</resources>
