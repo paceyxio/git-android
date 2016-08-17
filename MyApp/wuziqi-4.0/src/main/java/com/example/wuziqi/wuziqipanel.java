@@ -26,8 +26,14 @@ public class wuziqipanel extends View
     public ImageView imageViewPiece;
     private int mPanelWidth;
     private float mLineHeight;
-    private int MAX_LINE = 14;
-    private int MAX_COUNT_IN_LINE = 5;
+    private int MAX_LINE = 14;          //棋盘行列数大小
+    private int MAX_COUNT_IN_LINE = 5;  //五子连珠
+
+    //    游戏当前状态保存
+    private static final String INSTANCE = "instance";
+    private static final String INSTANCE_GAME_OVER = "instance_game_over";
+    private static final String INSTANCE_WHITE_ARRAY = "instance_white_array";
+    private static final String INSTANCE_BLACK_ARRAY = "instance_black_array";
 
     private Paint mPaint = new Paint();
 
@@ -116,6 +122,8 @@ public class wuziqipanel extends View
             mIsWhite = !mIsWhite;
         }
         pieceSrc(mIsWhite);
+        mIsGameOver = false;
+        mIsWhiteWinner = false;
         invalidate();
     }
 
@@ -373,12 +381,6 @@ public class wuziqipanel extends View
         imageViewPiece.setBackgroundResource(R.drawable.stone_b1);
         invalidate();
     }
-//    游戏当前状态保存
-    private static final String INSTANCE = "instance";
-    private static final String INSTANCE_GAME_OVER = "instance_game_over";
-    private static final String INSTANCE_WHITE_ARRAY = "instance_white_array";
-    private static final String INSTANCE_BLACK_ARRAY = "instance_black_array";
-
 
     @Override
     protected Parcelable onSaveInstanceState()
