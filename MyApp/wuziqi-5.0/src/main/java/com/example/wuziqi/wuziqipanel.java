@@ -294,7 +294,7 @@ public class wuziqipanel extends View
             chessBoard[p1.x][p1.y] = 0;
             chessBoard[p2.x][p2.y] = 0;
             myWin[meRemove1]--;
-            myWin[computerRemove1] = meRemove2 ;
+            myWin[computerRemove1] = meRemove2;
             computerWin[computerRemove1]--;
             computerWin[meRemove1] = computerRemove2;
         }
@@ -316,35 +316,38 @@ public class wuziqipanel extends View
             point = getValidPoint(x, y);
             int i = point.x;
             int j = point.y;
-            if (chessBoard[i][j] == 0)
+            if (i <= 15 && i >= 0 && j <= 15 && j >= 0)
             {
-                chessBoard[i][j] = 1;
-                point = getPoint(i, j);
-                mTempArray.add(point);
-                for (int k = 0; k < 572; k++)
+                if (chessBoard[i][j] == 0)
                 {
-                    if (wins[i][j][k])
+                    chessBoard[i][j] = 1;
+                    point = getPoint(i, j);
+                    mTempArray.add(point);
+                    for (int k = 0; k < 572; k++)
                     {
-                        meRemove1 = k;
-                        myWin[k]++;
-                        computerRemove2 = computerWin[k];
-                        computerWin[k] = 6;
-                        if (myWin[k] == 5)
+                        if (wins[i][j][k])
                         {
-                            mIsGameOver = true;
-                            Toast.makeText(getContext(), "黑棋胜利", Toast.LENGTH_LONG).show();
+                            meRemove1 = k;
+                            myWin[k]++;
+                            computerRemove2 = computerWin[k];
+                            computerWin[k] = 6;
+                            if (myWin[k] == 5)
+                            {
+                                mIsGameOver = true;
+                                Toast.makeText(getContext(), "黑棋胜利", Toast.LENGTH_LONG).show();
+                            }
                         }
                     }
-                }
-                if (!mIsGameOver)
-                {
-                    mIsMe = !mIsMe;
-                    computerAI();
-                }
+                    if (!mIsGameOver)
+                    {
+                        mIsMe = !mIsMe;
+                        computerAI();
+                    }
 
-            } else
-            {
-                return false;
+                } else
+                {
+                    return false;
+                }
             }
 
             invalidate();
